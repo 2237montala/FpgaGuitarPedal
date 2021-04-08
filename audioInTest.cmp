@@ -1,0 +1,23 @@
+	component audioInTest is
+		port (
+			reg_clk     : in  std_logic                     := 'X';             -- clk
+			reg_reset   : in  std_logic                     := 'X';             -- reset
+			aes_clk     : in  std_logic                     := 'X';             -- export
+			aes_de      : in  std_logic                     := 'X';             -- export
+			aes_ws      : in  std_logic                     := 'X';             -- export
+			aes_data    : in  std_logic                     := 'X';             -- export
+			aud_clk     : in  std_logic                     := 'X';             -- clk
+			reset       : in  std_logic                     := 'X';             -- reset
+			aud_ready   : in  std_logic                     := 'X';             -- ready
+			aud_valid   : out std_logic;                                        -- valid
+			aud_sop     : out std_logic;                                        -- startofpacket
+			aud_eop     : out std_logic;                                        -- endofpacket
+			aud_channel : out std_logic_vector(7 downto 0);                     -- channel
+			aud_data    : out std_logic_vector(23 downto 0);                    -- data
+			channel0    : in  std_logic_vector(7 downto 0)  := (others => 'X'); -- export
+			channel1    : in  std_logic_vector(7 downto 0)  := (others => 'X'); -- export
+			fifo_status : out std_logic_vector(7 downto 0);                     -- export
+			fifo_reset  : in  std_logic                     := 'X'              -- export
+		);
+	end component audioInTest;
+

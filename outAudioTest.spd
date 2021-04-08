@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="outAudioTest_sim/clocked_audio_output/mentor/cao_fifo.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="modelsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/mentor/cao_merge.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="modelsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/mentor/cao_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="modelsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/mentor/cao_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="modelsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/mentor/altera_cao_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="modelsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/mentor/clocked_audio_output.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="modelsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/aldec/cao_fifo.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="riviera" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/aldec/cao_merge.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="riviera" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/aldec/cao_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="riviera" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/aldec/cao_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="riviera" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/aldec/altera_cao_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="riviera" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/aldec/clocked_audio_output.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="riviera" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/cadence/cao_fifo.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="ncsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/cadence/cao_merge.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="ncsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/cadence/cao_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="ncsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/cadence/cao_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="ncsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/cadence/altera_cao_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="ncsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/cadence/clocked_audio_output.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="ncsim" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/synopsys/cao_fifo.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="vcs" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/synopsys/cao_merge.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="vcs" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/synopsys/cao_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="vcs" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/synopsys/cao_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="vcs" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/synopsys/altera_cao_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="vcs" />
+ <file
+   path="outAudioTest_sim/clocked_audio_output/synopsys/clocked_audio_output.v"
+   type="VERILOG_ENCRYPT"
+   library="outAudioTest"
+   simulator="vcs" />
+ <file path="outAudioTest_sim/outAudioTest.vhd" type="VHDL" />
+ <topLevel name="outAudioTest" />
+ <deviceFamily name="cyclonev" />
+</simPackage>

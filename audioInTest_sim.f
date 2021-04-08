@@ -1,0 +1,17 @@
+audioInTest_sim/audioInTest.vhd
+audioInTest_sim/clocked_audio_input/mentor/cai_avalon.v
+audioInTest_sim/clocked_audio_input/mentor/cai_registers.v
+audioInTest_sim/clocked_audio_input/mentor/altera_cai_reset_synchronizer.v
+audioInTest_sim/clocked_audio_input/mentor/clocked_audio_input.v
+audioInTest_sim/clocked_audio_input/aldec/cai_avalon.v
+audioInTest_sim/clocked_audio_input/aldec/cai_registers.v
+audioInTest_sim/clocked_audio_input/aldec/altera_cai_reset_synchronizer.v
+audioInTest_sim/clocked_audio_input/aldec/clocked_audio_input.v
+audioInTest_sim/clocked_audio_input/cadence/cai_avalon.v
+audioInTest_sim/clocked_audio_input/cadence/cai_registers.v
+audioInTest_sim/clocked_audio_input/cadence/altera_cai_reset_synchronizer.v
+audioInTest_sim/clocked_audio_input/cadence/clocked_audio_input.v
+audioInTest_sim/clocked_audio_input/synopsys/cai_avalon.v
+audioInTest_sim/clocked_audio_input/synopsys/cai_registers.v
+audioInTest_sim/clocked_audio_input/synopsys/altera_cai_reset_synchronizer.v
+audioInTest_sim/clocked_audio_input/synopsys/clocked_audio_input.v

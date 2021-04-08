@@ -1,0 +1,23 @@
+	component outAudioTest is
+		port (
+			reg_clk     : in  std_logic                     := 'X';             -- clk
+			reg_reset   : in  std_logic                     := 'X';             -- reset
+			aud_clk     : in  std_logic                     := 'X';             -- clk
+			reset       : in  std_logic                     := 'X';             -- reset
+			aud_ready   : out std_logic;                                        -- ready
+			aud_valid   : in  std_logic                     := 'X';             -- valid
+			aud_sop     : in  std_logic                     := 'X';             -- startofpacket
+			aud_eop     : in  std_logic                     := 'X';             -- endofpacket
+			aud_channel : in  std_logic_vector(7 downto 0)  := (others => 'X'); -- channel
+			aud_data    : in  std_logic_vector(23 downto 0) := (others => 'X'); -- data
+			aes_clk     : in  std_logic                     := 'X';             -- export
+			aes_de      : out std_logic;                                        -- export
+			aes_ws      : out std_logic;                                        -- export
+			aes_data    : out std_logic;                                        -- export
+			channel0    : in  std_logic_vector(7 downto 0)  := (others => 'X'); -- export
+			channel1    : in  std_logic_vector(7 downto 0)  := (others => 'X'); -- export
+			fifo_status : out std_logic_vector(7 downto 0);                     -- export
+			fifo_reset  : in  std_logic                     := 'X'              -- export
+		);
+	end component outAudioTest;
+

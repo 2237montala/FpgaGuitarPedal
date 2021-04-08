@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="audioInTest_sim/clocked_audio_input/mentor/cai_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="modelsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/mentor/cai_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="modelsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/mentor/altera_cai_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="modelsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/mentor/clocked_audio_input.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="modelsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/aldec/cai_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="riviera" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/aldec/cai_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="riviera" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/aldec/altera_cai_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="riviera" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/aldec/clocked_audio_input.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="riviera" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/cadence/cai_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="ncsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/cadence/cai_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="ncsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/cadence/altera_cai_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="ncsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/cadence/clocked_audio_input.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="ncsim" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/synopsys/cai_avalon.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="vcs" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/synopsys/cai_registers.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="vcs" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/synopsys/altera_cai_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="vcs" />
+ <file
+   path="audioInTest_sim/clocked_audio_input/synopsys/clocked_audio_input.v"
+   type="VERILOG_ENCRYPT"
+   library="audioInTest"
+   simulator="vcs" />
+ <file path="audioInTest_sim/audioInTest.vhd" type="VHDL" />
+ <topLevel name="audioInTest" />
+ <deviceFamily name="cyclonev" />
+</simPackage>
