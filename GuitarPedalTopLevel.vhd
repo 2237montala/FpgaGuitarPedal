@@ -2,96 +2,110 @@
  --Group 4
  --guitar pedal(s)
  --anthony, aj, mark
- 
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.ALL;
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity GuitarPedalTopLevel is 
 	port(
-	audio_in: in std_logic;--might be different than std_lgoic
-	clk_50: in std_logic;
-	adjust_one: in std_logic;
-	adjust_two: in std_logic;
-	AUD_ADCLRCK: in std_logic;
-	AUD_ADCDAT: in std_logic;
-	AUD_DACDAT: out std_logic;
-	AUD_XCX: in std_logic;
-	AUD_BCLK: in std_logic;
-	I2C_SCLK: in std_logic;
-	I2C_SDAT: in std_logic;
-	audio_out: out std_logic --might be different than std logic
-	);
+			clk_50: in std_logic;
+			reset : in std_logic;
+			AUD_ADCLRCK: in std_logic;
+			AUD_ADCDAT: in std_logic;
+			AUD_DACLRCK : in std_logic;
+			AUD_DACDAT: out std_logic;
+			AUD_XCK: out std_logic;
+			AUD_BCLK: in std_logic;
+			I2C_SCLK: out std_logic;
+			I2C_SDAT: inout std_logic
+		);
 end GuitarPedalTopLevel;
 
 architecture my_structure of GuitarPedalTopLevel is
 
-COMPONENT audioInTest
-	port (
-		reg_clk     : in  std_logic                     := '0';             --       control_clock.clk
-		reg_reset   : in  std_logic                     := '0';             -- control_clock_reset.reset
-		aes_clk     : in  std_logic                     := '0';             --   conduit_aes_audio.export
-		aes_de      : in  std_logic                     := '0';             --                    .export
-		aes_ws      : in  std_logic                     := '0';             --                    .export
-		aes_data    : in  std_logic                     := '0';             --                    .export
-		aud_clk     : in  std_logic                     := '0';             --          dout_clock.clk
-		reset       : in  std_logic                     := '0';             --    dout_clock_reset.reset
-		aud_ready   : in  std_logic                     := '0';             --                dout.ready
-		aud_valid   : out std_logic;                                        --                    .valid
-		aud_sop     : out std_logic;                                        --                    .startofpacket
-		aud_eop     : out std_logic;                                        --                    .endofpacket
-		aud_channel : out std_logic_vector(7 downto 0);                     --                    .channel
-		aud_data    : out std_logic_vector(23 downto 0);                    --                    .data
-		channel0    : in  std_logic_vector(7 downto 0)  := (others => '0'); --     conduit_control.export
-		channel1    : in  std_logic_vector(7 downto 0)  := (others => '0'); --                    .export
-		fifo_status : out std_logic_vector(7 downto 0);                     --                    .export
-		fifo_reset  : in  std_logic                     := '0'              --                    .export
-	);
-end COMPONENT;
+	-- Component for taking in audio and output it
+	-- https://class.ece.uw.edu/271/hauck2/de1/audio/Audio_Tutorial.pdf
+	COMPONENT audio_driver
+		port (
+			CLOCK_50 : in std_logic;
+			reset : in std_logic;
+			
+			-- I2C config
+			FPGA_I2C_SCLK : out std_logic;
+			FPGA_I2C_SDAT : inout std_logic;
+			
+			-- Audio codec
+			AUD_XCK : out std_logic;
+			AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK : in std_logic;
+			AUD_ADCDAT : in std_logic;
+			AUD_DACDAT : out std_logic;
 
-COMPONENT outAudioTest
-	port (
-		reg_clk     : in  std_logic                     := '0';             --       control_clock.clk
-		reg_reset   : in  std_logic                     := '0';             -- control_clock_reset.reset
-		aud_clk     : in  std_logic                     := '0';             --           din_clock.clk
-		reset       : in  std_logic                     := '0';             --     din_clock_reset.reset
-		aud_ready   : out std_logic;                                        --                 din.ready
-		aud_valid   : in  std_logic                     := '0';             --                    .valid
-		aud_sop     : in  std_logic                     := '0';             --                    .startofpacket
-		aud_eop     : in  std_logic                     := '0';             --                    .endofpacket
-		aud_channel : in  std_logic_vector(7 downto 0)  := (others => '0'); --                    .channel
-		aud_data    : in  std_logic_vector(23 downto 0) := (others => '0'); --                    .data
-		aes_clk     : in  std_logic                     := '0';             --   conduit_aes_audio.export
-		aes_de      : out std_logic;                                        --                    .export
-		aes_ws      : out std_logic;                                        --                    .export
-		aes_data    : out std_logic;                                        --                    .export
-		channel0    : in  std_logic_vector(7 downto 0)  := (others => '0'); --     conduit_control.export
-		channel1    : in  std_logic_vector(7 downto 0)  := (others => '0'); --                    .export
-		fifo_status : out std_logic_vector(7 downto 0);                     --                    .export
-		fifo_reset  : in  std_logic                     := '0'              --                    .export
-	);
-end COMPONENT;
+			-- Audio data
+			dac_left, dac_right : in std_logic_vector(23 downto 0);
+			adc_left, adc_right : out std_logic_vector(23 downto 0);
+			advance : out std_logic
+		);
+	end COMPONENT;
+	
+	
 
-component volume_control is
+--component volume_control is
+--
+--
+--end component;
+--
+--
+--
+--component gain_control is
+--
+--end component;
+--
+--
+--component distortion is
+--
+--
+--end component;
 
+	signal audioInBuffL: std_logic_vector(23 downto 0);
+	signal audioInBuffR: std_logic_vector(23 downto 0);
 
-end component;
+	signal audioOutBuffR: std_logic_vector(23 downto 0);
+	signal audioOutBuffL: std_logic_vector(23 downto 0);
+	signal audioReady : std_logic;
 
+	signal resetButton : std_logic;
+		
+begin 
 
+	-- Create a audio driver entity to handle the audio chip
+	audioDriver : audio_driver
+		port map(
+			CLOCK_50 => clk_50,
+			reset => resetButton,
+			FPGA_I2C_SCLK => I2C_SCLK,
+			FPGA_I2C_SDAT => I2C_SDAT,
+			AUD_XCK => AUD_XCK,
+			AUD_DACLRCK => AUD_DACLRCK,
+			AUD_ADCLRCK => AUD_ADCLRCK,
+			AUD_BCLK => AUD_BCLK,
+			AUD_ADCDAT => AUD_ADCDAT,
+			AUD_DACDAT => AUD_DACDAT,
+			dac_left => audioOutBuffL,
+			dac_right => audioOutBuffR,
+			adc_left => audioInBuffL,
+			adc_right => audioInBuffR,
+			advance => audioReady
+		);
 
-component gain_control is
-
-end component;
-
-
-component distortion is
-
-
-end component;
-
-
-begin
-
-
-
-
+	-- DE1-SOC board key buttons are active low so invert it
+	resetButton <= not reset;
+	
+	process(audioReady)
+	begin
+		-- When data is asserted move data from the in buffer
+		-- to the out buffer
+		audioOutBuffL <= audioInBuffL;
+		audioOutBuffR <= audioInBuffR;
+	end process;
 end  my_structure;
