@@ -19,60 +19,53 @@ end distortion_pedal;
 
 architecture distortion of distortion_pedal is 
 
---COMPONENT signOf	
---	generic(
---			N: natural:=8 -- number of bits
---		);
---	port(
---		input : std_logic_vector(N-1 downto 0);
---		sign : std_logic
---);
---end COMPONENT;
+component DFlipFlop
+	port(
+		Q : out std_logic_vector(23 downto 0);    
+		Clk :in std_logic;   
+		D :in  std_logic_vector(23 downto 0)    
+		);
+end Component;
 
-signal temp : std_logic_vector(23 downto 0);
+component mux221
+	Port ( SEL : in  STD_LOGIC;
+           A   : in  STD_LOGIC_VECTOR (23 downto 0);
+           B   : in  STD_LOGIC_VECTOR (23 downto 0);
+           X   : out STD_LOGIC_VECTOR (23 downto 0));
+	end component;
 
-signal audioLeftAsInt : integer := 0;
-signal audioRightAsInt : integer := 0;
-
-signal audioLeftIntDistort : integer := 0;
-signal audioRightIntDistort : integer := 0;
-
--- Algorithm
--- f(x) = sign(x)*(1 - e^(abs(x)))
--- Since we are using PCM there is no negative numbers but PCM
--- negative values are from 0 to 2^(n/2) where N is the number
--- of bits in our audio. In our case its 24 bits
 
 begin
+signal storageLeft: std_logic_vector(23 downto 0);
+signal storageRight: std_logic_vector(23 downto 0);
 
-process(audioUpdate)
-	begin
-	-- Convert audio in from PCM to integer
-	audioLeftAsInt <= to_integer(signed(audioLeftIn));
-	audioRightAsInt <= to_integer(signed(audioRightIn));
 
-	if audioLeftAsInt > 0 then
-		audioLeftIntDistort <= audioLeftAsInt;
-		
-		--Convert from into back to unsigned vector
-		audioLeftOut <= std_logic_vector(to_unsigned(audioLeftIntDistort,audioLeftOut'length));
-	else
-		audioLeftIntDistort <= audioLeftAsInt;
-		
-		--Convert from into back to unsigned vector
-		audioLeftOut <= std_logic_vector(to_unsigned(audioLeftIntDistort,audioLeftOut'length));
-	end if;
+leftMux: mux221 PORT MAP(
+	SEL => audioLeftIn(23),
+	A => audioLeftIn,
+	B => not audioLeftIn,
+	X => storageLeft
+);
+	
+latchLeft: DFlipFlop Port map(
+	Q => audioLeftOut,
+	Clk => clk,
+	D = > storageLeft
+	);
 
-	if audioRightAsInt > 0 then
-		audioRightIntDistort <= audioRightAsInt;
-		
-		--Convert from into back to unsigned vector
-		audioRightOut <= std_logic_vector(to_unsigned(audioRightIntDistort,audioRightOut'length));
-	else
-		audioRightIntDistort <= audioRightAsInt;
-		
-		--Convert from into back to unsigned vector
-		audioRightOut <= std_logic_vector(to_unsigned(audioRightIntDistort,audioRightOut'length));
-	end if;
-end process;
+
+rightMux: mux221 PORT MAP(
+	SEL => audioRightIn(23),
+	A => audioRightIn,
+	B => not audioRightIn,
+	X => storageRight
+	);
+
+latchRight: DFlipFlop Port map(
+	Q => audioRightOut,
+	Clk => clk,
+	D = > storageRight
+	);
+
+
 end distortion;
