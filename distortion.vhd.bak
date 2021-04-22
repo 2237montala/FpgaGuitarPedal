@@ -1,0 +1,19 @@
+-- Distortion Pedal
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity delay_pedal is 
+port(
+	clk: in std_logic;
+	audioUpdate: in std_logic;
+	delay_time: in std_logic_vector(3 downto 0);
+	--effect_gain: in std_logic_vector(2 downto 0);
+	--attenuation: in std_logic_vector(3 downto 0);-- might not need FIR filter might do this
+	wave_in: in std_logic_vector(23 downto 0);
+	wave_out: out std_logic_vector(23 downto 0);
+	reset : in std_logic
+	);
+end delay_pedal;

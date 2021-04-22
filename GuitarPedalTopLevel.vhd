@@ -18,7 +18,9 @@ entity GuitarPedalTopLevel is
 			AUD_XCK: out std_logic;
 			AUD_BCLK: in std_logic;
 			I2C_SCLK: out std_logic;
-			I2C_SDAT: inout std_logic
+			I2C_SDAT: inout std_logic;
+			effectEnableSw : in std_logic;
+			effectEnableLED : out std_logic
 		);
 end GuitarPedalTopLevel;
 
@@ -48,6 +50,29 @@ architecture my_structure of GuitarPedalTopLevel is
 		);
 	end COMPONENT;
 	
+	COMPONENT delay_pedal
+		port(
+			clk: in std_logic;
+			audioUpdate: in std_logic;
+			delay_time: in std_logic_vector(3 downto 0);
+			wave_in: in std_logic_vector(23 downto 0);
+			wave_out: out std_logic_vector(23 downto 0);
+			reset  : in std_logic
+			);
+	end COMPONENT;
+	
+	COMPONENT distortion_pedal
+		port(
+			clk: in std_logic;
+			audioUpdate: in std_logic;
+			audioLeftIn : in std_logic_vector(23 downto 0);
+			audioRightIn : in std_logic_vector(23 downto 0);
+			audioLeftOut : out std_logic_vector(23 downto 0);
+			audioRightOut : out std_logic_vector(23 downto 0);
+			reset : in std_logic
+			);
+end COMPONENT;
+	
 	
 
 --component volume_control is
@@ -72,6 +97,10 @@ architecture my_structure of GuitarPedalTopLevel is
 
 	signal audioOutBuffR: std_logic_vector(23 downto 0);
 	signal audioOutBuffL: std_logic_vector(23 downto 0);
+	
+	signal audioTempBuffR: std_logic_vector(23 downto 0);
+	signal audioTempBuffL: std_logic_vector(23 downto 0);
+	
 	signal audioReady : std_logic;
 
 	signal resetButton : std_logic;
@@ -97,15 +126,47 @@ begin
 			adc_right => audioInBuffR,
 			advance => audioReady
 		);
-
+	
+--	delay: delay_pedal
+--		port map(
+--			clk => clk_50,
+--			audioUpdate => audioReady,
+--			delay_time => "0000",
+--			wave_in => audioInBuffR,
+--			wave_out => audioTempBuffR,
+--			reset => resetButton);
+	
+	distortion : distortion_pedal
+		port map(
+			clk => clk_50,
+			audioUpdate => audioReady,
+			audioLeftIn => audioInBuffL,
+			audioRightIn => audioInBuffR,
+			audioLeftOut => audioTempBuffL,
+			audioRightOut => audioTempBuffR,
+			reset => resetButton
+			);
+	
 	-- DE1-SOC board key buttons are active low so invert it
 	resetButton <= not reset;
 	
+	effectEnableLED <= effectEnableSw;
+	
 	process(audioReady)
 	begin
-		-- When data is asserted move data from the in buffer
-		-- to the out buffer
-		audioOutBuffL <= audioInBuffL;
-		audioOutBuffR <= audioInBuffR;
+		if(effectEnableSw = '1') then
+			-- Add distortion pedal
+			-- When data is asserted move data from the in buffer
+			-- to the out buffer
+			audioOutBuffL <= audioTempBuffL;
+			audioOutBuffR <= audioTempBuffR;
+		else
+			-- No effect, just pass through signal
+			audioOutBuffL <= audioInBuffL;
+			audioOutBuffR <= audioInBuffR;
+		end if;
+		
+		
+		
 	end process;
 end  my_structure;

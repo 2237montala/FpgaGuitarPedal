@@ -1,0 +1,13 @@
+-- Returns the sign of the input vector
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity distortion_pedal is 
+port(
+	input : std_logic_vector(N downto 0);
+	sign : std_logic;
+);

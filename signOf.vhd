@@ -1,0 +1,25 @@
+---- Returns the sign of the input vector
+--
+--
+--library IEEE;
+--use IEEE.STD_LOGIC_1164.ALL;
+--use IEEE.NUMERIC_STD.ALL;
+--use IEEE.STD_LOGIC_UNSIGNED.ALL;
+--
+--entity signOf is 
+--	generic(
+--			N: natural:=8 -- number of bits
+--		);
+--	port(
+--		input : std_logic_vector(N-1 downto 0);
+--		sign : std_logic
+--);
+--
+--architecture behavioral of signOf
+--begin
+--	if input(input'left) = '1' then
+--		sign <= '1';
+--	else
+--		sign <= '0';
+--	end if;
+--end behavioral;
