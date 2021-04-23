@@ -32,12 +32,13 @@ component mux221
            A   : in  STD_LOGIC_VECTOR (23 downto 0);
            B   : in  STD_LOGIC_VECTOR (23 downto 0);
            X   : out STD_LOGIC_VECTOR (23 downto 0));
-	end component;
+end component;
 
-
-begin
 signal storageLeft: std_logic_vector(23 downto 0);
 signal storageRight: std_logic_vector(23 downto 0);
+
+begin
+
 
 
 leftMux: mux221 PORT MAP(
@@ -49,8 +50,8 @@ leftMux: mux221 PORT MAP(
 	
 latchLeft: DFlipFlop Port map(
 	Q => audioLeftOut,
-	Clk => clk,
-	D = > storageLeft
+	Clk => audioUpdate,
+	D => storageLeft
 	);
 
 
@@ -63,8 +64,8 @@ rightMux: mux221 PORT MAP(
 
 latchRight: DFlipFlop Port map(
 	Q => audioRightOut,
-	Clk => clk,
-	D = > storageRight
+	Clk => audioUpdate,
+	D => storageRight
 	);
 
 

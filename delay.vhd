@@ -21,16 +21,17 @@ end delay_pedal;
 architecture delay of delay_pedal is 
 
 component fifo 
-  generic(
-    B: natural:=24; -- number of bits
-    W: natural:=10 -- number of address bits
-  );
-  port(
-    clk, reset: in std_logic;
-    rd, wr: in std_logic;
-    w_data: in std_logic_vector (B-1 downto 0);
-    empty, full: out std_logic;
-    r_data: out std_logic_vector (B-1 downto 0)
+	generic(
+		RAM_WIDTH: natural:=32; -- number of bits
+      RAM_DEPTH: natural:=11 -- number of address bits	
+	);
+	port(
+		clk, reset: in std_logic;
+		rd_en, wr_en: in std_logic;
+		wr_data: in std_logic_vector (RAM_WIDTH-1 downto 0);
+		empty, full: out std_logic;
+		rd_data: out std_logic_vector (RAM_WIDTH-1 downto 0);
+		rd_valid : out std_logic
   );
 end component;
 
@@ -48,12 +49,10 @@ signal rightDataOut : std_logic_vector (23 downto 0);
 signal leftDataIn : std_logic_vector (23 downto 0);
 signal rightDataIn : std_logic_vector (23 downto 0);
 
+signal leftDataOutRead : std_logic;
+
 signal prev_out : std_logic_vector(23 downto 0);
 signal signalSum : std_logic_vector(23 downto 0);
---integer effect_gain := 2;
-
---tickSinceLastDelay: std_logic := 0;
---constant clockRate: integer := 50000000;
 
 begin
 
@@ -62,25 +61,26 @@ leftChannelFifo : fifo
 	port map(
 		clk => clk,
 		reset => reset,
-		rd => readData,
-		wr => writeData,
-		w_data => leftDataIn,
-		r_data => leftDataOut,
+		rd_valid => leftDataOutRead,
+		rd_en => readData,
+		wr_en => writeData,
+		wr_data => leftDataIn,
+		rd_data => leftDataOut,
 		empty => leftEmptyOut,
 		full => leftFullOut
 	);
 	
-rightChannelFifo : fifo
-	port map(
-		clk => clk,
-		reset => reset,
-		rd => readData,
-		wr => writeData,
-		w_data => rightDataIn,
-		r_data => rightDataOut,
-		empty => rightEmptyOut,
-		full => rightFullOut
-	);
+--rightChannelFifo : fifo
+--	port map(
+--		clk => clk,
+--		reset => reset,
+--		rd => readData,
+--		wr => writeData,
+--		w_data => rightDataIn,
+--		r_data => rightDataOut,
+--		empty => rightEmptyOut,
+--		full => rightFullOut
+--	);
 
 	
 process(reset, clk)
