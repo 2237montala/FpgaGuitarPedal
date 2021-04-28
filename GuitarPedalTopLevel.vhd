@@ -19,8 +19,10 @@ entity GuitarPedalTopLevel is
 			AUD_BCLK: in std_logic;
 			I2C_SCLK: out std_logic;
 			I2C_SDAT: inout std_logic;
-			effectEnableSw : in std_logic;
-			effectEnableLED : out std_logic
+			distortionEnableSw : in std_logic;
+			distortionEnableLED : out std_logic;
+			delayEnableSw : in std_logic;
+			delayEnableLED : out std_logic
 		);
 end GuitarPedalTopLevel;
 
@@ -55,10 +57,12 @@ architecture my_structure of GuitarPedalTopLevel is
 			clk: in std_logic;
 			audioUpdate: in std_logic;
 			delay_time: in std_logic_vector(3 downto 0);
-			wave_in: in std_logic_vector(23 downto 0);
-			wave_out: out std_logic_vector(23 downto 0);
-			reset  : in std_logic
-			);
+			audioLeftIn : in std_logic_vector(23 downto 0);
+			audioRightIn : in std_logic_vector(23 downto 0);
+			audioLeftOut : out std_logic_vector(23 downto 0);
+			audioRightOut : out std_logic_vector(23 downto 0);
+			reset : in std_logic
+		);
 	end COMPONENT;
 	
 	COMPONENT distortion_pedal
@@ -101,6 +105,12 @@ end COMPONENT;
 	signal audioTempBuffR: std_logic_vector(23 downto 0);
 	signal audioTempBuffL: std_logic_vector(23 downto 0);
 	
+	signal audioTempBuffDelR: std_logic_vector(23 downto 0);
+	signal audioTempBuffDelL: std_logic_vector(23 downto 0);
+	
+	signal delayInputR: std_logic_vector(23 downto 0);
+	signal delayInputL: std_logic_vector(23 downto 0);
+	
 	signal audioReady : std_logic;
 
 	signal resetButton : std_logic;
@@ -132,39 +142,53 @@ begin
 			clk => clk_50,
 			audioUpdate => audioReady,
 			delay_time => "0000",
-			wave_in => audioInBuffR,
-			wave_out => audioTempBuffR,
+			audioLeftIn => delayInputL,
+			audioRightIn => delayInputR,
+			audioLeftOut => audioTempBuffDelL,
+			audioRightOut => audioTempBuffDelR,
 			reset => resetButton);
+		
+	distortion : distortion_pedal
+		port map(
+			clk => clk_50,
+			audioUpdate => audioReady,
+			audioLeftIn => audioInBuffL,
+			audioRightIn => audioInBuffR,
+			audioLeftOut => audioTempBuffL,
+			audioRightOut => audioTempBuffR,
+			reset => resetButton
+			);
 	
---	distortion : distortion_pedal
---		port map(
---			clk => clk_50,
---			audioUpdate => audioReady,
---			audioLeftIn => audioInBuffL,
---			audioRightIn => audioInBuffR,
---			audioLeftOut => audioTempBuffL,
---			audioRightOut => audioTempBuffR,
---			reset => resetButton
---			);
-	
+
 	-- DE1-SOC board key buttons are active low so invert it
 	resetButton <= not reset;
 	
-	effectEnableLED <= effectEnableSw;
+	distortionEnableLED <= distortionEnableSw;
+	delayEnableLED <= delayEnableSw;
 	
 	process(audioReady)
 	begin
-		if(effectEnableSw = '1') then
+		if(distortionEnableSw = '1') and (delayEnableSw = '0') then
 			-- Add distortion pedal
 			-- When data is asserted move data from the in buffer
 			-- to the out buffer
 			audioOutBuffL <= audioTempBuffL;
 			audioOutBuffR <= audioTempBuffR;
-		else
+		elsif (distortionEnableSw = '0') and (delayEnableSw = '0') then
 			-- No effect, just pass through signal
 			audioOutBuffL <= audioInBuffL;
 			audioOutBuffR <= audioInBuffR;
-		end if;
+		elsif (distortionEnableSw = '0') and (delayEnableSw = '1') then
+			delayInputL <= audioInBuffL;
+			delayInputR <= audioInBuffR;
+			audioOutBuffL <= audioTempBuffDelL;
+			audioOutBuffR <= audioTempbuffDelR;
+		else
+			delayInputL <= audioTempBuffL;
+			delayInputR <= audioTempBuffR;
+			audioOutBuffL <= audioTempBuffDelL;
+			audioOutBuffR <= audioTempbuffDelR;
+	end if;
 		
 		
 		

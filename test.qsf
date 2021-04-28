@@ -77,11 +77,12 @@ set_location_assignment PIN_J12 -to I2C_SCLK
 set_location_assignment PIN_K12 -to I2C_SDAT
 
 # Switches 
-set_location_assignment PIN_AB12 -to effectEnableSw
+set_location_assignment PIN_AB12 -to distortionEnableSw
+set_location_assignment PIN_AC12 -to delayEnableSw
 
 # Leds
-set_location_assignment PIN_V16 -to effectEnableLED
-
+set_location_assignment PIN_V16 -to distortionEnableLED
+set_location_assignment PIN_W16 -to delayEnableLED
 
 
 
@@ -110,4 +111,6 @@ set_global_assignment -name VHDL_FILE GuitarPedalTopLevel.vhd
 set_global_assignment -name VHDL_FILE distortion.vhd
 set_global_assignment -name VHDL_FILE signOf.vhd
 set_global_assignment -name QIP_FILE delayRam.qip
+set_global_assignment -name QIP_FILE delayFifo.qip
+
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
