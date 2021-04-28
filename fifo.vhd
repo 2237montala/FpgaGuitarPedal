@@ -17,7 +17,7 @@ entity fifo is
       wr_data: in std_logic_vector (RAM_WIDTH-1 downto 0);
       empty, full: out std_logic;
       rd_data: out std_logic_vector (RAM_WIDTH-1 downto 0);
-		rd_valid : out std_logic
+      rd_valid : out std_logic
    );
 end fifo;
 
@@ -93,7 +93,6 @@ begin
 		if reset = '1' then
 		  head <= 0;
 		else
-
 		  if wr_en = '1' and full_i = '0' then
 			 incr(head);
 		  end if;
@@ -121,17 +120,17 @@ begin
 	 end if;
 	end process;
 
-	-- Write to and read from the RAM
+--	-- Write to and read from the RAM
 --	PROC_RAM : process(clk)
 --	begin
 --	 if rising_edge(clk) then
 --		--ram(head) <= w_data;
 --		
 --		-- Set BRAM input to write data
---		data <= w_data;
+--		--data <= w_data;
 --		
 --		-- Set output to BRAM output
---		r_data <= q;
+--		--rd_data <= q;
 --	 end if;
 --	end process;
 

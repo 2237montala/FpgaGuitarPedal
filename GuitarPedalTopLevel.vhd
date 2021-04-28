@@ -127,25 +127,25 @@ begin
 			advance => audioReady
 		);
 	
---	delay: delay_pedal
---		port map(
---			clk => clk_50,
---			audioUpdate => audioReady,
---			delay_time => "0000",
---			wave_in => audioInBuffR,
---			wave_out => audioTempBuffR,
---			reset => resetButton);
-	
-	distortion : distortion_pedal
+	delay: delay_pedal
 		port map(
 			clk => clk_50,
 			audioUpdate => audioReady,
-			audioLeftIn => audioInBuffL,
-			audioRightIn => audioInBuffR,
-			audioLeftOut => audioTempBuffL,
-			audioRightOut => audioTempBuffR,
-			reset => resetButton
-			);
+			delay_time => "0000",
+			wave_in => audioInBuffR,
+			wave_out => audioTempBuffR,
+			reset => resetButton);
+	
+--	distortion : distortion_pedal
+--		port map(
+--			clk => clk_50,
+--			audioUpdate => audioReady,
+--			audioLeftIn => audioInBuffL,
+--			audioRightIn => audioInBuffR,
+--			audioLeftOut => audioTempBuffL,
+--			audioRightOut => audioTempBuffR,
+--			reset => resetButton
+--			);
 	
 	-- DE1-SOC board key buttons are active low so invert it
 	resetButton <= not reset;
