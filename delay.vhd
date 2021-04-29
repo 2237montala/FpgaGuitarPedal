@@ -59,6 +59,7 @@ signal rightAudioSum : std_logic_vector(23 downto 0) := x"000000";
 begin
 
 -- Create our fifos	
+-- The fifo hold 32768 data samples
 leftChannelFifo : delayFifo
 	port map(
 		clock => clk,
@@ -99,7 +100,7 @@ process(state_reg,audioUpdate)
 	
 	when WAITING_STATE =>
 		-- Do nothing until we get an audio update signal
-		if(audioUpdate = '1') then
+		if(audioUpdate'event and audioUpdate = '1') then
 			-- Move to the update state
 			state_next <= UPDATE_OUTPUT_STATE;
 			

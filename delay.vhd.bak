@@ -99,7 +99,7 @@ process(state_reg,audioUpdate)
 	
 	when WAITING_STATE =>
 		-- Do nothing until we get an audio update signal
-		if(audioUpdate = '1') then
+		if(audioUpdate'event and audioUpdate = '1') then
 			-- Move to the update state
 			state_next <= UPDATE_OUTPUT_STATE;
 			
@@ -126,7 +126,7 @@ process(state_reg,audioUpdate)
 		-- Update the signals
 		writeData <= '1';
 		readData <= '0';
-		state_next <= UPDATE_OUTPUT_STATE;
+		state_next <= END_STATE;
 	when END_STATE =>
 		writeData <= '0';
 		

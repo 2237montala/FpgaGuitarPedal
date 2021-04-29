@@ -283,3 +283,92 @@ run
 run
 run
 run -continue
+run
+run
+run
+run
+run -continue
+# A bookmark named "bookmark0" has been added for window "Source"
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 79
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# 3 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 79
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# 3 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+add wave -position insertpoint  \
+sim:/delaypedaltb/dut/state_reg
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 79
+restart
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 102
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 102
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 102
+step
+step
+step
+step
+step
+step -out
+step
+step
+step
+step
+step
+step -out
+# Next activity is in 10 ns.
+step
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 102
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 79
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+run
+# Break in Process line__95 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 116
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# 3 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 79
+run
+# Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
+run
+# Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
+run
+# Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
+run
+# Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
+run
+# Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
