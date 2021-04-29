@@ -53,8 +53,8 @@ signal leftDataOutRead : std_logic;
 signal prev_out : std_logic_vector(23 downto 0);
 signal signalSum : std_logic_vector(23 downto 0);
 
-signal leftAudioSum : std_logic_vector(23 downto 0);
-signal rightAudioSum : std_logic_vector(23 downto 0);
+signal leftAudioSum : std_logic_vector(23 downto 0) := x"000000";
+signal rightAudioSum : std_logic_vector(23 downto 0) := x"000000";
 
 begin
 
@@ -113,7 +113,7 @@ process(state_reg,audioUpdate)
 		end if;
 	when UPDATE_OUTPUT_STATE =>
 		-- Create the delay signal and set the output
-		leftAudioSum <= leftDataOut + audioLeftIn;
+		leftAudioSum <= std_logic_vector(signed(leftDataOut) + signed(audioLeftIn));
 		rightAudioSum <= rightDataOut + audioRightIn;
 		
 		-- Set the combined audio to the output of the entity

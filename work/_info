@@ -9,130 +9,218 @@ z2
 !i10f 100
 cModel Technology
 d/home/anthony/Documents/SchoolWork/EECE_4740/InClass/Generate_Adder
-Edelayram
-Z0 w1619109538
-Z1 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
-Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 31
-Z4 d/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal
-Z5 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd
-Z6 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd
+Edelay_pedal
+Z0 w1619585706
+Z1 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z3 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 49
+Z6 d/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal
+Z7 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd
+Z8 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd
 l0
-L43 1
-VS2j0NYi1=78PWmZ:HbMB:2
-!s100 Jz8B8:S61G@];Yzj;D<IN1
-Z7 OV;C;2020.1;71
+L8 1
+V1=Q_4WAQ6YI4dN_RET4n90
+!s100 S71CcTJiA;053eBnRnaQT3
+Z9 OV;C;2020.1;71
 32
-Z8 !s110 1619542262
+Z10 !s110 1619711564
 !i10b 1
-Z9 !s108 1619542262.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd|
-Z11 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd|
+Z11 !s108 1619711563.000000
+Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd|
+Z13 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd|
 !i113 1
-Z12 o-work work -2002 -explicit
-Z13 tExplicit 1 CvgOpt 0
-Asyn
+Z14 o-work work -2002 -explicit
+Z15 tExplicit 1 CvgOpt 0
+Adelay
 R1
 R2
 R3
+R4
+R5
+DEx4 work 11 delay_pedal 0 22 1=Q_4WAQ6YI4dN_RET4n90
+!i122 49
+l59
+L21 118
+V4@8HKhG4QfNm3b0nQQ6oL2
+!s100 7IP4PTGW?>KL3[kA7:cBn1
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Edelayfifo
+Z16 w1619582862
+R4
+R5
+!i122 50
+R6
+Z17 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayFifo.vhd
+Z18 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayFifo.vhd
+l0
+Z19 L43 1
+V0mmPEh=:EAnEi[R<VE7id0
+!s100 bfidfX3KOmhe:99zJi>L;0
+R9
+32
+R10
+!i10b 1
+Z20 !s108 1619711564.000000
+Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayFifo.vhd|
+Z22 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayFifo.vhd|
+!i113 1
+R14
+R15
+Asyn
+R4
+R5
+DEx4 work 9 delayfifo 0 22 0mmPEh=:EAnEi[R<VE7id0
+!i122 50
+l92
+L58 67
+V`BEDAES?eWPGeaa=LZJnY3
+!s100 ifdOW2UG8Vi[gV]l<aRLV0
+R9
+32
+R10
+!i10b 1
+R20
+R21
+R22
+!i113 1
+R14
+R15
+Edelayram
+Z23 w1619109538
+Z24 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
+R4
+R5
+!i122 31
+R6
+Z25 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd
+Z26 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd
+l0
+R19
+VS2j0NYi1=78PWmZ:HbMB:2
+!s100 Jz8B8:S61G@];Yzj;D<IN1
+R9
+32
+Z27 !s110 1619542262
+!i10b 1
+Z28 !s108 1619542262.000000
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd|
+Z30 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayRam.vhd|
+!i113 1
+R14
+R15
+Asyn
+R24
+R4
+R5
 DEx4 work 8 delayram 0 22 S2j0NYi1=78PWmZ:HbMB:2
 !i122 31
 l60
 L56 41
 V_]Vm98TAEk`_Y7m<`n8ER0
 !s100 KEP02BE=TEhcJ<Wk:`2eZ0
-R7
-32
-R8
-!i10b 1
 R9
-R10
-R11
+32
+R27
+!i10b 1
+R28
+R29
+R30
 !i113 1
-R12
-R13
+R14
+R15
 Efifo
-Z14 w1619541669
-Z15 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
-R2
+Z31 w1619541669
 R3
-!i122 32
 R4
-Z16 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd
-Z17 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd
+R5
+!i122 32
+R6
+Z32 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd
+Z33 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd
 l0
 L9 1
 VfE1c^SMS@lY?TLfHlLQ=m3
 !s100 10zQA6U:Lo2KBhC;Tg6im1
-R7
-32
-R8
-!i10b 1
 R9
-Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd|
-Z19 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd|
+32
+R27
+!i10b 1
+R28
+Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd|
+Z35 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifo.vhd|
 !i113 1
-R12
-R13
-Aarch
+R14
 R15
-R2
+Aarch
 R3
+R4
+R5
 DEx4 work 4 fifo 0 22 fE1c^SMS@lY?TLfHlLQ=m3
 !i122 32
 l63
 L24 124
 VQ<g^CzGoK=4<[dL8Qk@F[1
 !s100 4GmoSSma6hdYN3;eCzhOa2
-R7
-32
-R8
-!i10b 1
 R9
-R18
-R19
+32
+R27
+!i10b 1
+R28
+R34
+R35
 !i113 1
-R12
-R13
+R14
+R15
 Efifotb
-Z20 w1619542225
-R2
-R3
-!i122 33
+Z36 w1619711561
 R4
-Z21 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifoTb.vhd
-Z22 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifoTb.vhd
+R5
+!i122 51
+R6
+Z37 8/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd
+Z38 F/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd
 l0
-L5 1
-VAcNF9Ggc=<AIb?TC>XPKn2
-!s100 UCa0zIR=JLBfnDjzC4oZh3
-R7
-32
-Z23 !s110 1619542263
-!i10b 1
+L4 1
+ViM5=fzeI718O2UjTYPQjk1
+!s100 L]4jQVMO3TRi`Co;R]STK0
 R9
-Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifoTb.vhd|
-Z25 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/fifoTb.vhd|
+32
+R10
+!i10b 1
+R20
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd|
+!s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd|
 !i113 1
-R12
-R13
+R14
+R15
 Amy_tb
-R2
-R3
-Z26 DEx4 work 6 fifotb 0 22 AcNF9Ggc=<AIb?TC>XPKn2
-!i122 33
-l33
-L9 97
-VAi]ci?`Fbf6SeXR=?WG:A1
-!s100 f4I5;CCRQaUNJmUHl8;RD0
-R7
-32
-R23
-!i10b 1
+R4
+R5
+DEx4 work 6 fifotb 0 22 iM5=fzeI718O2UjTYPQjk1
+!i122 51
+l36
+L8 78
+VD1zQ_K8zU?CB:GW9nEYDe3
+!s100 Q84E1jffl7;FV0hoMK[WP3
 R9
-R24
-R25
+32
+R10
+!i10b 1
+R20
+R39
+Z40 !s107 /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd|
 !i113 1
-R12
-R13
+R14
+R15
