@@ -54,7 +54,7 @@ signal prev_out : std_logic_vector(23 downto 0);
 signal signalSum : std_logic_vector(23 downto 0);
 
 signal leftAudioSum : std_logic_vector(23 downto 0) := x"000000";
-signal rightAudioSum : std_logic_vector(23 downto 0) := x"000000;
+signal rightAudioSum : std_logic_vector(23 downto 0) := x"000000";
 
 begin
 

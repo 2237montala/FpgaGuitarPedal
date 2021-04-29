@@ -76,7 +76,6 @@ begin
     end loop;		
 	  
     -- Send in first audio sample
-    reset_i <= '0';
     audioLeftInTb <= x"000001";
     audioRightInTb <= x"000001";
     wait for 20 us;

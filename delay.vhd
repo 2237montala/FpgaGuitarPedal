@@ -126,7 +126,7 @@ process(state_reg,audioUpdate)
 		-- Update the signals
 		writeData <= '1';
 		readData <= '0';
-		state_next <= UPDATE_OUTPUT_STATE;
+		state_next <= END_STATE;
 	when END_STATE =>
 		writeData <= '0';
 		

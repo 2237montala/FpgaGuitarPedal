@@ -80,10 +80,15 @@ begin
     audioRightInTb <= x"000001";
     wait for 20 us;
 
-    -- Send in second audio sample
-    --audioLeftInTb <= x"000002";
-    --audioRightInTb <= x"000002";
-    --wait for 10 us;
+    -- Send in first audio sample
+    audioLeftInTb <= x"000001";
+    audioRightInTb <= x"000001";
+    wait for 20 us;
+
+    -- Send in first audio sample
+    audioLeftInTb <= x"000001";
+    audioRightInTb <= x"000001";
+    wait for 20 us;
 
 end process test;
 
