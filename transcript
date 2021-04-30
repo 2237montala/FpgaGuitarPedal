@@ -372,3 +372,376 @@ run
 # Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
 run
 # Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
+run
+# Break in Process line__96 at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd line 117
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# 3 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+run
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 89
+run
+run
+run
+add wave -position insertpoint audioUpdateED
+# ** UI-Msg: (vish-4014) No objects found matching 'audioUpdateED'.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# 3 compiles, 0 failed with no errors.
+add wave -position insertpoint audioUpdateED
+# ** UI-Msg: (vish-4014) No objects found matching 'audioUpdateED'.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# ** Warning: (vsim-3473) Component instance "audioUpdateEdgeDetect : edge_detect" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /delaypedaltb/dut File: /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd
+add wave -position insertpoint  \
+sim:/delaypedaltb/dut/audioUpdateED
+add wave -position 3  sim:/delaypedaltb/dut/writeData
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3473) Component instance "audioUpdateEdgeDetect : edge_detect" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /delaypedaltb/dut File: /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# 3 compiles, 0 failed with no errors.
+run
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# 3 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# ** Warning: (vsim-3473) Component instance "audioUpdateEdgeDetect : edge_detect" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /delaypedaltb/dut File: /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delay.vhd
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+run
+run
+run
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful with warnings.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+restart
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 88
+restart
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+run
+run
+run
+add wave -position insertpoint  \
+sim:/delaypedaltb/reset_i
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+add wave -position insertpoint  \
+sim:/delaypedaltb/dut/state_reg
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+# Break key hit
+# Break key hit
+# Break key hit
+run -continue
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+run -continue
+run
+run -continue
+run -continue
+run -all
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run
+add wave -position insertpoint  \
+sim:/delaypedaltb/dut/leftEmptyOut
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run -all
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+add wave -position 8  sim:/delaypedaltb/dut/leftFullOut
+restart
+run -all
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run -all
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run
+run
+run
+run
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+run -all
+run -continue
+# Break in ForLoop loop at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run -continue
+restart
+run -all
+run -continue
+run -continue
+# Compile of delay.vhd failed with 2 errors.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 1 failed with 2 errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+run
+run
+run -all
+run -continue
+# Break in ForLoop loop at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run
+run
+# Break in ForLoop loop at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run
+run
+# Break in ForLoop loop at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run
+run
+# Break in ForLoop loop at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+run
+run
+# Break in ForLoop loop at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 78
+# Compile of delay.vhd failed with 2 errors.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of delay.vhd failed with 2 errors.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of delay.vhd failed with 2 errors.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 1 failed with 2 errors.
+# End time: 21:25:44 on Apr 29,2021, Elapsed time: 10:29:45
+# Errors: 0, Warnings: 4

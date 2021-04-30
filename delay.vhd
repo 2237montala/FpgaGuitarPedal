@@ -12,8 +12,8 @@ entity delay_pedal is
 		delay_time: in std_logic_vector(3 downto 0);
 		audioLeftIn : in std_logic_vector(23 downto 0);
 		audioRightIn : in std_logic_vector(23 downto 0);
-		audioLeftOut : out std_logic_vector(23 downto 0);
-		audioRightOut : out std_logic_vector(23 downto 0);
+		audioLeftOut : out std_logic_vector(23 downto 0) :=x"000000";
+		audioRightOut : out std_logic_vector(23 downto 0) := x"000000";
 		reset : in std_logic
 		);
 end delay_pedal;
@@ -34,25 +34,36 @@ COMPONENT delayFifo
 	);
 END COMPONENT;
 
+COMPONENT edge_detect
+  port(
+    clk, reset: in std_logic;
+    level: in std_logic;
+    tick: out std_logic
+  );
+end COMPONENT;
+
 -- Create signals
-type state_type is (WAITING_STATE, UPDATE_OUTPUT_STATE, END_STATE); 
+type state_type is (WAITING_STATE, READ_WAIT_STATE, UPDATE_OUTPUT_STATE, END_STATE); 
 signal state_next, state_reg: state_type;
 
-signal clk_i, reset_i, readData, writeData : std_logic; 
+signal clk_i, reset_i :std_logic;
+signal readData, writeData : std_logic := '0'; 
 signal leftEmptyOut, leftFullOut : std_logic;
 signal rightEmptyOut, rightFullOut : std_logic;
+signal audioUpdateED : std_logic := '0';
 
+-- Output of the fifo
 signal leftDataOut : std_logic_vector (23 downto 0) := x"000000";
 signal rightDataOut : std_logic_vector (23 downto 0) := x"000000";
 
+-- Data to write to the fifo
 signal leftDataIn : std_logic_vector (23 downto 0);
 signal rightDataIn : std_logic_vector (23 downto 0);
 
-signal leftDataOutRead : std_logic;
+signal leftDataOutReduced : std_logic_vector(23 downto 0);
+signal rightDataOutReduced : std_logic_vector(23 downto 0);
 
-signal prev_out : std_logic_vector(23 downto 0);
-signal signalSum : std_logic_vector(23 downto 0);
-
+-- Signals to hold the sum of the input and fifo values
 signal leftAudioSum : std_logic_vector(23 downto 0) := x"000000";
 signal rightAudioSum : std_logic_vector(23 downto 0) := x"000000";
 
@@ -68,7 +79,7 @@ leftChannelFifo : delayFifo
 		wrreq	=> writeData,
 		empty	=> leftEmptyOut,
 		full	=> leftFullOut,
-		q		=> leftDataOut
+		q	=> leftDataOut
 	);
 	
 rightChannelFifo : delayFifo
@@ -79,31 +90,57 @@ rightChannelFifo : delayFifo
 		wrreq	=> writeData,
 		empty	=> rightEmptyOut,
 		full	=> rightFullOut,
-		q		=> rightDataOut
+		q	=> rightDataOut
+	);
+	
+audioUpdateEdgeDetect : edge_detect
+	port map(
+		clk => clk,
+		reset => reset,
+		level => audioUpdate,
+		tick => audioUpdateED
 	);
 
-	
+-- Left shift the old signal down by 2 (divide by 2)
+leftDataOutReduced <= std_logic_vector(shift_right(unsigned(leftDataOut),1));
+rightDataOutReduced <= std_logic_vector(shift_right(unsigned(rightDataOut),1));
+
+-- Create the delay signal and set the output		
+-- Combine the old and the new signal
+leftAudioSum <= std_logic_vector(signed(leftDataOutReduced) + signed(audioLeftIn));
+rightAudioSum <= std_logic_vector(signed(rightDataOutReduced) + signed(audioRightIn));
+
+-- Set the combined audio to the output of the entity
+audioLeftOut <= leftAudioSum;
+audioRightOut <= rightAudioSum;
+		
+-- Set the data to write back to the fifo to the sum of the new and old signals
+leftDataIn <= leftAudioSum;
+rightDataIn <= rightAudioSum;
+
 process(reset, clk)
   begin
     if (reset = '1') then    
 		state_reg <= WAITING_STATE;
+		-- Set the outputs to be 0
     elsif (clk'event and clk = '1') then
 		state_reg <= state_next;
     end if;
   end process;
-
-
-process(state_reg,audioUpdate)
+  
+process(state_reg,clk)
 	begin
 	
 	case state_reg is
 	
 	when WAITING_STATE =>
 		-- Do nothing until we get an audio update signal
-		if(audioUpdate'event and audioUpdate = '1') then
+		--if(audioUpdate'event and audioUpdate = '1') then
+		if(audioUpdateED = '1') then
 			-- Move to the update state
+			--state_next <= READ_WAIT_STATE;
 			state_next <= UPDATE_OUTPUT_STATE;
-			
+
 			-- Check if the fifo is full and if so we want to read from it
 			if(leftFullOut = '1' and rightFullOut = '1') then
 				-- Set the fifo read data to true
@@ -112,18 +149,10 @@ process(state_reg,audioUpdate)
 				readData <= '0';
 			end if;
 		end if;
-	when UPDATE_OUTPUT_STATE =>
-		-- Create the delay signal and set the output
-		leftAudioSum <= std_logic_vector(signed(leftDataOut) + signed(audioLeftIn));
-		rightAudioSum <= rightDataOut + audioRightIn;
-		
-		-- Set the combined audio to the output of the entity
-		audioLeftOut <= leftAudioSum;
-		audioRightOut <= rightAudioSum;
-		
-		leftDataIn <= leftAudioSum;
-		rightDataIn <= rightAudioSum;
-		
+	when READ_WAIT_STATE =>
+		--readData <= '1';
+		state_next <= UPDATE_OUTPUT_STATE;	
+	when UPDATE_OUTPUT_STATE =>		
 		-- Update the signals
 		writeData <= '1';
 		readData <= '0';
