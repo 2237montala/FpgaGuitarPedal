@@ -189,8 +189,5 @@ begin
 			audioOutBuffL <= audioTempBuffDelL;
 			audioOutBuffR <= audioTempbuffDelR;
 	end if;
-		
-		
-		
 	end process;
 end  my_structure;

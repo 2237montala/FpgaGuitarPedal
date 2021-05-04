@@ -50,7 +50,7 @@ ENTITY delayFifo IS
 		empty		: OUT STD_LOGIC ;
 		full		: OUT STD_LOGIC ;
 		q		: OUT STD_LOGIC_VECTOR (23 DOWNTO 0);
-		usedw		: OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
+		usedw		: OUT STD_LOGIC_VECTOR (14 DOWNTO 0)
 	);
 END delayFifo;
 
@@ -60,7 +60,7 @@ ARCHITECTURE SYN OF delayfifo IS
 	SIGNAL sub_wire0	: STD_LOGIC ;
 	SIGNAL sub_wire1	: STD_LOGIC ;
 	SIGNAL sub_wire2	: STD_LOGIC_VECTOR (23 DOWNTO 0);
-	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (14 DOWNTO 0);
 
 
 
@@ -85,7 +85,7 @@ ARCHITECTURE SYN OF delayfifo IS
 			empty	: OUT STD_LOGIC ;
 			full	: OUT STD_LOGIC ;
 			q	: OUT STD_LOGIC_VECTOR (23 DOWNTO 0);
-			usedw	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
+			usedw	: OUT STD_LOGIC_VECTOR (14 DOWNTO 0)
 	);
 	END COMPONENT;
 
@@ -93,17 +93,17 @@ BEGIN
 	empty    <= sub_wire0;
 	full    <= sub_wire1;
 	q    <= sub_wire2(23 DOWNTO 0);
-	usedw    <= sub_wire3(15 DOWNTO 0);
+	usedw    <= sub_wire3(14 DOWNTO 0);
 
 	scfifo_component : scfifo
 	GENERIC MAP (
 		add_ram_output_register => "OFF",
 		intended_device_family => "Cyclone V",
-		lpm_numwords => 65536,
+		lpm_numwords => 32768,
 		lpm_showahead => "OFF",
 		lpm_type => "scfifo",
 		lpm_width => 24,
-		lpm_widthu => 16,
+		lpm_widthu => 15,
 		overflow_checking => "ON",
 		underflow_checking => "ON",
 		use_eab => "ON"
