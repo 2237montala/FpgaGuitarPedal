@@ -52,6 +52,21 @@ signal leftEmptyOut, leftFullOut : std_logic;
 signal rightEmptyOut, rightFullOut : std_logic;
 signal audioUpdateED : std_logic := '0';
 
+---- Output of the fifo
+--signal leftDataOut : std_logic_vector (23 downto 0) := x"000000";
+--signal rightDataOut : std_logic_vector (23 downto 0) := x"000000";
+--
+---- Data to write to the fifo
+--signal leftDataIn : std_logic_vector (23 downto 0);
+--signal rightDataIn : std_logic_vector (23 downto 0);
+--
+--signal leftDataOutReduced : std_logic_vector(23 downto 0);
+--signal rightDataOutReduced : std_logic_vector(23 downto 0);
+--
+---- Signals to hold the sum of the input and fifo values
+--signal leftAudioSum : std_logic_vector(23 downto 0) := x"000000";
+--signal rightAudioSum : std_logic_vector(23 downto 0) := x"000000";
+
 -- Output of the fifo
 signal leftDataOut : std_logic_vector (23 downto 0) := x"000000";
 signal rightDataOut : std_logic_vector (23 downto 0) := x"000000";
@@ -60,12 +75,12 @@ signal rightDataOut : std_logic_vector (23 downto 0) := x"000000";
 signal leftDataIn : std_logic_vector (23 downto 0);
 signal rightDataIn : std_logic_vector (23 downto 0);
 
-signal leftDataOutReduced : std_logic_vector(23 downto 0);
-signal rightDataOutReduced : std_logic_vector(23 downto 0);
+signal leftDataOutReduced : signed(23 downto 0);
+signal rightDataOutReduced : signed(23 downto 0);
 
 -- Signals to hold the sum of the input and fifo values
-signal leftAudioSum : std_logic_vector(23 downto 0) := x"000000";
-signal rightAudioSum : std_logic_vector(23 downto 0) := x"000000";
+signal leftAudioSum : signed(23 downto 0) := x"000000";
+signal rightAudioSum : signed(23 downto 0) := x"000000";
 
 begin
 
@@ -102,21 +117,41 @@ audioUpdateEdgeDetect : edge_detect
 	);
 
 -- Left shift the old signal down by 2 (divide by 2)
-leftDataOutReduced <= std_logic_vector(shift_right(unsigned(leftDataOut),1));
-rightDataOutReduced <= std_logic_vector(shift_right(unsigned(rightDataOut),1));
+--leftDataOutReduced <= std_logic_vector(shift_right(unsigned(leftDataOut),1));
+--rightDataOutReduced <= std_logic_vector(shift_right(unsigned(rightDataOut),1));
+--
+---- Create the delay signal and set the output		
+---- Combine the old and the new signal
+--leftAudioSum <= std_logic_vector(signed(leftDataOutReduced) + signed(audioLeftIn));
+--rightAudioSum <= std_logic_vector(signed(rightDataOutReduced) + signed(audioRightIn));
+--
+---- Set the combined audio to the output of the entity
+--audioLeftOut <= leftAudioSum;
+--audioRightOut <= rightAudioSum;
+--		
+---- Set the data to write back to the fifo to the sum of the new and old signals
+--leftDataIn <= leftAudioSum;
+--rightDataIn <= rightAudioSum;
+
+-- Left shift the old signal down by 2 (divide by 2)
+--leftDataOutReduced <= shift_right(unsigned(leftDataOut),1);
+--rightDataOutReduced <= shift_right(unsigned(rightDataOut),1);
+
+leftDataOutReduced <= signed(leftDataOut(leftDataOut'length-1) & leftDataOut(23 downto 1));
+rightDataOutReduced <= signed(rightDataOut(rightDataOut'length-1) & rightDataOut(23 downto 1));
 
 -- Create the delay signal and set the output		
 -- Combine the old and the new signal
-leftAudioSum <= std_logic_vector(signed(leftDataOutReduced) + signed(audioLeftIn));
-rightAudioSum <= std_logic_vector(signed(rightDataOutReduced) + signed(audioRightIn));
+leftAudioSum <= signed(audioLeftIn) + leftDataOutReduced;
+rightAudioSum <= signed(audioRightIn) + rightDataOutReduced;
 
 -- Set the combined audio to the output of the entity
-audioLeftOut <= leftAudioSum;
-audioRightOut <= rightAudioSum;
+audioLeftOut <= std_logic_vector(leftAudioSum);
+audioRightOut <= std_logic_vector(rightAudioSum);
 		
 -- Set the data to write back to the fifo to the sum of the new and old signals
-leftDataIn <= leftAudioSum;
-rightDataIn <= rightAudioSum;
+leftDataIn <= std_logic_vector(leftAudioSum);
+rightDataIn <= std_logic_vector(rightAudioSum);
 
 process(reset, clk)
   begin
