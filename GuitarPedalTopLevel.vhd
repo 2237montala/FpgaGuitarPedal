@@ -56,7 +56,7 @@ architecture my_structure of GuitarPedalTopLevel is
 		port(
 			clk: in std_logic;
 			audioUpdate: in std_logic;
-			delay_time: in std_logic_vector(3 downto 0);
+			delay_time: in std_logic_vector(2 downto 0);
 			audioLeftIn : in std_logic_vector(23 downto 0);
 			audioRightIn : in std_logic_vector(23 downto 0);
 			audioLeftOut : out std_logic_vector(23 downto 0);
@@ -141,7 +141,7 @@ begin
 		port map(
 			clk => clk_50,
 			audioUpdate => audioReady,
-			delay_time => "0000",
+			delay_time => "000",
 			audioLeftIn => delayInputL,
 			audioRightIn => delayInputR,
 			audioLeftOut => audioTempBuffDelL,
