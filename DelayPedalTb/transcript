@@ -333,3 +333,347 @@ restart
 # Loading work.delay_pedal(delay)
 # Loading work.delayfifo(syn)
 # Loading work.edge_detect(mealy_architecture)
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+restart
+run
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run
+run
+run
+run
+run
+run
+run
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+add wave -position insertpoint  \
+sim:/delaypedaltb/dut/readData \
+sim:/delaypedaltb/dut/writeData
+restart
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+run
+run
+run
+run
+run
+run
+restart
+run
+run
+run
+run
+run
+run
+run
+run
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run
+run
+run
+run
+run
+run
+run
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+run
+run
+run
+run
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -all
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+add wave -position insertpoint  \
+sim:/delaypedaltb/dut/leftFullOut \
+sim:/delaypedaltb/dut/rightFullOut
+restart
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run -continue
+# ** Error: Delayed output supposed to be 1
+#    Time: 172105 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 1
+#    Time: 172126 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172147 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172168 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172189 us  Iteration: 0  Instance: /delaypedaltb
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+run -continue
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run -continue
+# ** Error: Delayed output supposed to be 1
+#    Time: 172105 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 1
+#    Time: 172126 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172147 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172168 us  Iteration: 0  Instance: /delaypedaltb
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172189 us  Iteration: 0  Instance: /delaypedaltb
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 111
+run -continue
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run
+run
+run
+# ** Error: Delayed output supposed to be 1
+#    Time: 172105 us  Iteration: 0  Instance: /delaypedaltb
+run
+# ** Error: Delayed output supposed to be 1
+#    Time: 172126 us  Iteration: 0  Instance: /delaypedaltb
+# Break key hit
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run
+run
+run
+# ** Error: Delayed output supposed to be 1
+#    Time: 172105 us  Iteration: 0  Instance: /delaypedaltb
+run
+# ** Error: Delayed output supposed to be 1
+#    Time: 172126 us  Iteration: 0  Instance: /delaypedaltb
+run
+run
+run
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172147 us  Iteration: 0  Instance: /delaypedaltb
+run
+run
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172168 us  Iteration: 0  Instance: /delaypedaltb
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+run
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+run -continue
+# Break key hit
+run -continue
+run -all
+# Break key hit
+# Simulation stop requested.
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172147 us  Iteration: 0  Instance: /delaypedaltb
+# Break key hit
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172168 us  Iteration: 0  Instance: /delaypedaltb
+run
+run
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172189 us  Iteration: 0  Instance: /delaypedaltb
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172168 us  Iteration: 0  Instance: /delaypedaltb
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# ** Error: Delayed output supposed to be 0x800000
+#    Time: 172210 us  Iteration: 0  Instance: /delaypedaltb
+run
+run
+# Compile of delay.vhd was successful.
+# Compile of delayFifo.vhd was successful.
+# Compile of delayPedalTb.vhd was successful.
+# Compile of edge_detect.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.delaypedaltb(my_tb)
+# Loading work.delay_pedal(delay)
+# Loading work.delayfifo(syn)
+# Loading work.edge_detect(mealy_architecture)
+run -continue
+# Break in Process test at /home/anthony/Documents/SchoolWork/EECE_4740/FpgaGuitarPedal/delayPedalTb.vhd line 131
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run

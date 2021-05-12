@@ -32,7 +32,7 @@ signal audioRightOutTb : std_logic_vector(23 downto 0);
 
 signal audioRightOutCorrect,audioLeftOutCorrect : std_logic_vector(23 downto 0);
 
-constant fifoLength : integer := 65536;
+constant fifoLength : integer := 8192;
 signal currentFifoFill : integer := 0;
 
 begin
@@ -72,6 +72,8 @@ begin
     wait for 10 us;
 
     -- Add in some fake outputs for testing
+    reset_i <= '0';
+
     audioLeftInTb <= x"000000";
     audioRightInTb <= x"000000";
     currentFifoFill <= currentFifoFill + 1;
@@ -116,7 +118,6 @@ begin
     -- Add some non edge cases
 
     -- Create a for loop to fill the fifos
-    reset_i <= '0';
     for i in currentFifoFill to fifoLength-1 loop
 	audioLeftInTb <= std_logic_vector(to_unsigned(i,24));
 	audioRightInTb <= std_logic_vector(to_unsigned(i,24));
@@ -133,8 +134,8 @@ begin
     audioLeftOutCorrect <= x"000000";
     audioRightOutCorrect <= x"000000";
     wait for 21 us;
-    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0" severity error;
-    
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 0" severity error;
+   
     -- Repeat again the next value in the fifo should be 0x1
     -- and the delayed output is going to be 0 so the expected
     -- result should be the same as the input
@@ -144,7 +145,7 @@ begin
     audioLeftOutCorrect <= x"000000";
     audioRightOutCorrect <= x"000000";
     wait for 21 us;
-    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0" severity error;
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 0" severity error;
     
     -- Repeat again but now the value in the fifo is 0x2 and the delayed output
     -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
@@ -154,7 +155,7 @@ begin
     audioLeftOutCorrect <= x"000001";
     audioRightOutCorrect <= x"000001";
     wait for 21 us;
-    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 1" severity error;
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 1" severity error;
     
     -- Repeat again but now the value in the fifo is 0x3 and the delayed output
     -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
@@ -164,71 +165,61 @@ begin
     audioLeftOutCorrect <= x"000001";
     audioRightOutCorrect <= x"000001";
     wait for 21 us;
-    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 1" severity error;
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 1" severity error;
 
-    -- Repeat again but now the value in the fifo is 0x3 and the delayed output
+    -- Repeat again but now the value in the fifo is 0x4 and the delayed output
     -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
     
-    audioLeftOutCorrect <= x"800000";
-    audioRightOutCorrect <= x"800000";
+    audioLeftOutCorrect <= x"000002";
+    audioRightOutCorrect <= x"000002";
     wait for 21 us;
-    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 1" severity error;
 
-    -- Repeat again but now the value in the fifo is 0x3 and the delayed output
-    -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
+    -- Repeat again but now the value in the fifo is 0x800000 and the delayed output
+    -- is going to be C00000 becase we shift down 1 and make the number negative again
     
-    audioLeftOutCorrect <= x"BFFFFF";
-    audioRightOutCorrect <= x"BFFFFF";
+    audioLeftOutCorrect <= x"C00000";
+    audioRightOutCorrect <= x"C00000";
     wait for 21 us;
-    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
 
-    -- Repeat again but now the value in the fifo is 0x3 and the delayed output
-    -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    
-    audioLeftOutCorrect <= x"BFF000";
-    audioRightOutCorrect <= x"BFF000";
+    audioLeftOutCorrect <= x"FFFFFF";
+    audioRightOutCorrect <= x"FFFFFF";
     wait for 21 us;
-    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
 
-    for i in 0 to 32767 loop
-	audioLeftInTb <= std_logic_vector(to_unsigned(i,24));
-	audioRightInTb <= std_logic_vector(to_unsigned(i,24));
-	wait for 21 us;
-    end loop;
+    audioLeftOutCorrect <= x"FFF800";
+    audioRightOutCorrect <= x"FFF800";
+    wait for 21 us;
+    assert (audioLeftOutTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
 
     audioLeftInTb <= x"000000";
     audioRightInTb <= x"000000";
     wait for 21 us;
-
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
-
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
-
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
-
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
-
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
+--
+--    -- Send in first audio sample
+--    audioLeftInTb <= x"000000";
+--    audioRightInTb <= x"000000";
+--    wait for 21 us;
+--
+--    -- Send in first audio sample
+--    audioLeftInTb <= x"000000";
+--    audioRightInTb <= x"000000";
+--    wait for 21 us;
+--
+--    audioLeftInTb <= x"000000";
+--    audioRightInTb <= x"000000";
+--    wait for 21 us;
+--
+--    -- Send in first audio sample
+--    audioLeftInTb <= x"000000";
+--    audioRightInTb <= x"000000";
+--    wait for 21 us;
+--
+--    -- Send in first audio sample
+--    audioLeftInTb <= x"000000";
+--    audioRightInTb <= x"000000";
+--    wait for 21 us;
 
 end process test;
 
