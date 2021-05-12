@@ -36,15 +36,16 @@ end component;
 
 signal storageLeft: std_logic_vector(23 downto 0);
 signal storageRight: std_logic_vector(23 downto 0);
-
+signal notAudioLeftIn, notAudioRightIn: std_logic_vector(23 downto 0);
 begin
-
+notAudioLeftIn <= not audioLeftIn;
+notAudioRightIn <= not audioRightIn;
 
 
 leftMux: mux221 PORT MAP(
 	SEL => audioLeftIn(23),
 	A => audioLeftIn,
-	B => not audioLeftIn,
+	B => notAudioLeftIn,
 	X => storageLeft
 );
 	
@@ -58,7 +59,7 @@ latchLeft: DFlipFlop Port map(
 rightMux: mux221 PORT MAP(
 	SEL => audioRightIn(23),
 	A => audioRightIn,
-	B => not audioRightIn,
+	B => notAudioRightIn,
 	X => storageRight
 	);
 
