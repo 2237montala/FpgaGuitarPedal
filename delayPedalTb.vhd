@@ -13,11 +13,11 @@ COMPONENT delay_pedal
 	port(
 		clk: in std_logic;
 		audioUpdate: in std_logic;
-		delay_time: in std_logic_vector(3 downto 0);
+		delay_time: in std_logic_vector(2 downto 0);
 		audioLeftIn : in std_logic_vector(23 downto 0);
 		audioRightIn : in std_logic_vector(23 downto 0);
-		audioLeftOut : out std_logic_vector(23 downto 0);
-		audioRightOut : out std_logic_vector(23 downto 0);
+		audioLeftOut : out std_logic_vector(23 downto 0) :=x"000000";
+		audioRightOut : out std_logic_vector(23 downto 0) := x"000000";
 		reset : in std_logic
 		);
 end COMPONENT;
@@ -30,13 +30,18 @@ signal audioRightInTb : std_logic_vector(23 downto 0);
 signal audioLeftOutTb : std_logic_vector(23 downto 0);
 signal audioRightOutTb : std_logic_vector(23 downto 0);
 
+signal audioRightOutCorrect,audioLeftOutCorrect : std_logic_vector(23 downto 0);
+
+constant fifoLength : integer := 65536;
+signal currentFifoFill : integer := 0;
+
 begin
 
 dut : delay_pedal
     port map(
 	clk => clk_i,
 	audioUpdate => audioClk,
-	delay_time => "0000",
+	delay_time => "000",
 	audioLeftIn => audioLeftInTb,
 	audioRightIn => audioRightInTb,
 	audioLeftOut => audioLeftOutTb,
@@ -66,13 +71,130 @@ begin
     audioRightInTb <= x"000000";
     wait for 10 us;
 
+    -- Add in some fake outputs for testing
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+    
+    audioLeftInTb <= x"000001";
+    audioRightInTb <= x"000001";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+
+    audioLeftInTb <= x"000002";
+    audioRightInTb <= x"000002";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+
+    audioLeftInTb <= x"000003";
+    audioRightInTb <= x"000003";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+
+    audioLeftInTb <= x"000004";
+    audioRightInTb <= x"000004";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+
+    -- Add in some negative values
+    audioLeftInTb <= x"800000";
+    audioRightInTb <= x"800000";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+
+    audioLeftInTb <= x"FFFFFF";
+    audioRightInTb <= x"FFFFFF";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+
+    audioLeftInTb <= x"FFF000";
+    audioRightInTb <= x"FFF000";
+    currentFifoFill <= currentFifoFill + 1;
+    wait for 21 us;
+
+    -- Add some non edge cases
+
     -- Create a for loop to fill the fifos
     reset_i <= '0';
-    for i in 0 to 32767 loop
+    for i in currentFifoFill to fifoLength-1 loop
 	audioLeftInTb <= std_logic_vector(to_unsigned(i,24));
 	audioRightInTb <= std_logic_vector(to_unsigned(i,24));
 	wait for 21 us;
-    end loop;		
+    end loop;	
+
+    -- Check if the output is correct
+    -- Since after the fifo is full if we should expect the 
+    -- next sequence of signals to be the current + old/2
+    
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    
+    audioLeftOutCorrect <= x"000000";
+    audioRightOutCorrect <= x"000000";
+    wait for 21 us;
+    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0" severity error;
+    
+    -- Repeat again the next value in the fifo should be 0x1
+    -- and the delayed output is going to be 0 so the expected
+    -- result should be the same as the input
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    
+    audioLeftOutCorrect <= x"000000";
+    audioRightOutCorrect <= x"000000";
+    wait for 21 us;
+    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0" severity error;
+    
+    -- Repeat again but now the value in the fifo is 0x2 and the delayed output
+    -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    
+    audioLeftOutCorrect <= x"000001";
+    audioRightOutCorrect <= x"000001";
+    wait for 21 us;
+    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 1" severity error;
+    
+    -- Repeat again but now the value in the fifo is 0x3 and the delayed output
+    -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    
+    audioLeftOutCorrect <= x"000001";
+    audioRightOutCorrect <= x"000001";
+    wait for 21 us;
+    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 1" severity error;
+
+    -- Repeat again but now the value in the fifo is 0x3 and the delayed output
+    -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    
+    audioLeftOutCorrect <= x"800000";
+    audioRightOutCorrect <= x"800000";
+    wait for 21 us;
+    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
+
+    -- Repeat again but now the value in the fifo is 0x3 and the delayed output
+    -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    
+    audioLeftOutCorrect <= x"BFFFFF";
+    audioRightOutCorrect <= x"BFFFFF";
+    wait for 21 us;
+    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
+
+    -- Repeat again but now the value in the fifo is 0x3 and the delayed output
+    -- is going to be 2/2 = 1 so the pedal output should be input + 0x1
+    audioLeftInTb <= x"000000";
+    audioRightInTb <= x"000000";
+    
+    audioLeftOutCorrect <= x"BFF000";
+    audioRightOutCorrect <= x"BFF000";
+    wait for 21 us;
+    assert (audioLeftInTb = audioLeftOutCorrect) report "Delayed output supposed to be 0x800000" severity error;
 
     for i in 0 to 32767 loop
 	audioLeftInTb <= std_logic_vector(to_unsigned(i,24));
