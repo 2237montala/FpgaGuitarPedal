@@ -44,7 +44,7 @@ COMPONENT edge_detect
 end COMPONENT;
 
 -- Create signals
-type state_type is (WAITING_STATE, READ_WAIT_STATE, UPDATE_OUTPUT_STATE, END_STATE); 
+type state_type is (WAITING_STATE, UPDATE_OUTPUT_STATE, END_STATE); 
 signal state_next, state_reg: state_type;
 
 signal clk_i, reset_i :std_logic;
@@ -145,7 +145,6 @@ process(state_reg,clk)
 		--if(audioUpdate'event and audioUpdate = '1') then
 		if(audioUpdateED = '1') then
 			-- Move to the update state
-			--state_next <= READ_WAIT_STATE;
 			state_next <= UPDATE_OUTPUT_STATE;
 			
 			-- Check if the fifo is full and if so we want to read from it
@@ -156,8 +155,6 @@ process(state_reg,clk)
 				readData <= '0';
 			end if;
 		end if;
-	when READ_WAIT_STATE =>
-		--readData <= '1';
 		state_next <= UPDATE_OUTPUT_STATE;	
 	when UPDATE_OUTPUT_STATE =>		
 		-- Update the signals
