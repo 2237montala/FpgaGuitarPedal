@@ -66,45 +66,11 @@ begin
 
     -- Create a for loop to fill the fifos
     reset_i <= '0';
-    for i in 0 to 32767 loop
-	audioLeftInTb <= std_logic_vector(to_unsigned(i,24));
-	audioRightInTb <= std_logic_vector(to_unsigned(i,24));
-	wait for 21 us;
-    end loop;		
-
-    for i in 0 to 32767 loop
-	audioLeftInTb <= std_logic_vector(to_unsigned(i,24));
-	audioRightInTb <= std_logic_vector(to_unsigned(i,24));
-	wait for 21 us;
-    end loop;
-
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
+    audioLeftInTb <= x"F00000";
+    audioRightInTb <= x"F00000";
     wait for 21 us;
 
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
 
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
-
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
-
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
-
-    -- Send in first audio sample
-    audioLeftInTb <= x"000000";
-    audioRightInTb <= x"000000";
-    wait for 21 us;
 
 end process test;
 
